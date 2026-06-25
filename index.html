@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>陈浮生的数字人生 | 用技术点亮教育，用社群连接未来</title>
+<meta name="description" content="陈浮生 — AI机器人教育专家 | 创业团队负责人 | Web3生态共建者。用技术点亮教育，用社群连接未来。">
+<style>
+/* ===== 全局变量 ===== */
+:root {
+  --deep-blue: #1a365d;
+  --deep-blue-light: #2a4a7f;
+  --deep-blue-dark: #102845;
+  --tech-silver: #e2e8f0;
+  --warm-orange: #f97316;
+  --warm-orange-light: #fb923c;
+  --warm-orange-dark: #ea580c;
+  --bg-light: #f7f8fa;
+  --bg-gradient: linear-gradient(135deg, #f0f4f8 0%, #e8edf3 100%);
+  --text-dark: #1e293b;
+  --text-medium: #475569;
+  --text-light: #94a3b8;
+  --white: #ffffff;
+  --shadow-sm: 0 2px 8px rgba(26, 54, 93, 0.06);
+  --shadow-md: 0 8px 24px rgba(26, 54, 93, 0.1);
+  --shadow-lg: 0 16px 48px rgba(26, 54, 93, 0.15);
+  --shadow-orange: 0 8px 24px rgba(249, 115, 22, 0.2);
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== Reset ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-dark);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* ===== 导航栏 ===== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 0.75rem 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+  transition: var(--transition);
+}
+.navbar.scrolled {
+  padding: 0.5rem 2rem;
+  box-shadow: var(--shadow-sm);
+}
+.nav-container {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-logo {
+  font-size: 1.25rem; font-weight: 800;
+  background: linear-gradient(135deg, var(--deep-blue), var(--warm-orange));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.nav-logo .logo-icon {
+  font-size: 1.5rem; -webkit-text-fill-color: initial;
+}
+.nav-links { display: flex; gap: 0.25rem; align-items: center; }
+.nav-links a {
+  padding: 0.5rem 0.875rem; border-radius: var(--radius-sm);
+  font-size: 0.875rem; font-weight: 500; color: var(--text-medium);
+  transition: var(--transition);
+}
+.nav-links a:hover { color: var(--deep-blue); background: var(--tech-silver); }
+.nav-mobile-btn { display: none; font-size: 1.5rem; cursor: pointer; color: var(--deep-blue); background: none; border: none; }
+
+/* ===== Hero ===== */
+.hero {
+  min-height: 100vh; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #0f1e3d 0%, #1a365d 40%, #1e3a5f 70%, #1a365d 100%);
+  padding: 6rem 2rem 3rem;
+}
+/* 科技背景网格 */
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(226, 232, 240, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(226, 232, 240, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+/* 光晕 */
+.hero-glow-1 {
+  position: absolute; top: -10%; right: -5%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.12) 0%, transparent 70%);
+  border-radius: 50%; animation: pulse 6s ease-in-out infinite;
+}
+.hero-glow-2 {
+  position: absolute; bottom: -15%; left: -10%; width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(42, 74, 127, 0.4) 0%, transparent 70%);
+  border-radius: 50%; animation: pulse 8s ease-in-out infinite reverse;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 0.9; }
+}
+
+/* 浮动粒子 */
+.particle {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  background: rgba(249, 115, 22, 0.3);
+  animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+/* 代码装饰 */
+.hero-code-deco {
+  position: absolute; font-family: 'Courier New', monospace;
+  font-size: 0.8rem; color: rgba(226, 232, 240, 0.08);
+  white-space: pre; pointer-events: none;
+  animation: codeFloat 20s linear infinite;
+}
+@keyframes codeFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50px); }
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1100px; width: 100%;
+  display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center;
+}
+.hero-text { color: var(--white); }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.375rem 1rem; border-radius: 50px;
+  background: rgba(249, 115, 22, 0.15);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  font-size: 0.8rem; color: var(--warm-orange-light);
+  margin-bottom: 1.5rem; font-weight: 500;
+}
+.hero-tag .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--warm-orange); animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.hero h1 {
+  font-size: 2.75rem; font-weight: 800; line-height: 1.3;
+  margin-bottom: 1rem; letter-spacing: -0.02em;
+}
+.hero h1 .highlight {
+  background: linear-gradient(135deg, var(--warm-orange), var(--warm-orange-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-subtitle {
+  font-size: 1.05rem; color: var(--tech-silver);
+  margin-bottom: 0.5rem; font-weight: 400; opacity: 0.85;
+}
+.hero-subtitle .sep { color: var(--warm-orange); margin: 0 0.5rem; }
+.hero-buttons { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+.btn {
+  padding: 0.75rem 1.75rem; border-radius: 50px;
+  font-size: 0.95rem; font-weight: 600; cursor: pointer;
+  transition: var(--transition); display: inline-flex; align-items: center; gap: 0.5rem;
+  border: none; position: relative; overflow: hidden;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--warm-orange), var(--warm-orange-dark));
+  color: var(--white); box-shadow: var(--shadow-orange);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(249, 115, 22, 0.35); }
+.btn-outline {
+  background: transparent; color: var(--tech-silver);
+  border: 2px solid rgba(226, 232, 240, 0.3);
+}
+.btn-outline:hover { border-color: var(--tech-silver); background: rgba(226, 232, 240, 0.1); transform: translateY(-3px); }
+
+/* Hero 照片 */
+.hero-photo-wrap {
+  position: relative; display: flex; justify-content: center; align-items: center;
+}
+.hero-photo-frame {
+  position: relative; width: 280px; height: 350px;
+  border-radius: var(--radius-lg); overflow: hidden;
+  border: 3px solid rgba(226, 232, 240, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+.hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+.hero-photo-frame::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(26, 54, 93, 0.3) 0%, transparent 50%);
+}
+/* 旋转环 */
+.hero-ring {
+  position: absolute; width: 340px; height: 340px;
+  border: 2px dashed rgba(249, 115, 22, 0.2);
+  border-radius: 50%; animation: rotate 20s linear infinite;
+}
+.hero-ring::before {
+  content: ''; position: absolute; top: -6px; left: 50%;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--warm-orange); box-shadow: 0 0 20px var(--warm-orange);
+}
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* 数据条 */
+.hero-stats {
+  position: relative; z-index: 2; margin-top: 3rem;
+  display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap;
+}
+.hero-stat { text-align: center; color: var(--white); }
+.hero-stat .num {
+  font-size: 2rem; font-weight: 800;
+  background: linear-gradient(135deg, var(--warm-orange), var(--warm-orange-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-stat .label { font-size: 0.8rem; color: var(--tech-silver); opacity: 0.7; margin-top: 0.25rem; }
+
+/* ===== 通用 Section ===== */
+section { padding: 5rem 2rem; position: relative; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-tag {
+  display: inline-block; padding: 0.25rem 1rem; border-radius: 50px;
+  background: rgba(249, 115, 22, 0.1); color: var(--warm-orange);
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase; margin-bottom: 0.75rem;
+}
+.section-title {
+  font-size: 2.25rem; font-weight: 800; color: var(--deep-blue);
+  letter-spacing: -0.02em; margin-bottom: 0.5rem;
+}
+.section-desc { color: var(--text-medium); font-size: 1rem; max-width: 600px; margin: 0 auto; }
+
+/* ===== About ===== */
+.about { background: var(--bg-light); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: start;
+}
+.about-card {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 2rem; box-shadow: var(--shadow-md);
+  border-top: 4px solid var(--warm-orange);
+}
+.about-card .identity-list li {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  padding: 0.75rem 0; border-bottom: 1px solid var(--tech-silver);
+  font-size: 0.95rem; color: var(--text-medium);
+}
+.about-card .identity-list li:last-child { border-bottom: none; }
+.about-card .identity-list .icon { font-size: 1.25rem; flex-shrink: 0; }
+.about-card .identity-list .label { font-weight: 600; color: var(--deep-blue); min-width: 70px; }
+.about-bio {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 2.5rem; box-shadow: var(--shadow-md);
+  position: relative;
+}
+.about-bio::before {
+  content: '"'; position: absolute; top: 0.5rem; left: 1.5rem;
+  font-size: 5rem; color: var(--tech-silver); font-family: Georgia, serif;
+  line-height: 1; opacity: 0.5;
+}
+.about-bio p {
+  font-size: 1.05rem; color: var(--text-medium); line-height: 1.9;
+  position: relative; z-index: 1; margin-bottom: 1.5rem;
+}
+.about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.about-tag {
+  padding: 0.375rem 1rem; border-radius: 50px;
+  background: var(--tech-silver); color: var(--deep-blue);
+  font-size: 0.85rem; font-weight: 600;
+  transition: var(--transition);
+}
+.about-tag:hover { background: var(--deep-blue); color: var(--white); transform: translateY(-2px); }
+
+/* ===== Timeline ===== */
+.timeline { background: var(--white); }
+.timeline-container { position: relative; max-width: 900px; margin: 0 auto; }
+.timeline-line {
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(to bottom, var(--warm-orange), var(--deep-blue), var(--warm-orange));
+  transform: translateX(-50%); border-radius: 2px;
+}
+.timeline-item {
+  position: relative; width: 50%; padding: 0 2.5rem 2.5rem 0;
+  text-align: right;
+}
+.timeline-item:nth-child(even) {
+  left: 50%; padding: 0 0 2.5rem 2.5rem; text-align: left;
+}
+.timeline-dot {
+  position: absolute; right: -9px; top: 0.5rem;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--white); border: 4px solid var(--warm-orange);
+  z-index: 2; box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
+}
+.timeline-item:nth-child(even) .timeline-dot {
+  left: -9px; right: auto;
+}
+.timeline-card {
+  background: var(--bg-light); border-radius: var(--radius-md);
+  padding: 1.5rem; transition: var(--transition);
+  border: 1px solid transparent;
+}
+.timeline-card:hover {
+  background: var(--white); box-shadow: var(--shadow-md);
+  border-color: var(--tech-silver); transform: translateY(-3px);
+}
+.timeline-date {
+  display: inline-block; padding: 0.2rem 0.75rem; border-radius: 50px;
+  background: var(--deep-blue); color: var(--white);
+  font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem;
+}
+.timeline-role { font-size: 1.05rem; font-weight: 700; color: var(--deep-blue); margin-bottom: 0.25rem; }
+.timeline-company { font-size: 0.875rem; color: var(--warm-orange); font-weight: 600; margin-bottom: 0.75rem; }
+.timeline-desc { font-size: 0.9rem; color: var(--text-medium); }
+.timeline-desc li {
+  padding: 0.25rem 0; position: relative;
+}
+.timeline-desc li::before {
+  content: '▹'; color: var(--warm-orange); margin-right: 0.5rem;
+}
+
+/* ===== Achievements ===== */
+.achievements { background: var(--bg-light); }
+.achievements-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.achievement-card {
+  background: var(--white); border-radius: var(--radius-md);
+  overflow: hidden; box-shadow: var(--shadow-sm);
+  transition: var(--transition); cursor: pointer;
+  border: 1px solid var(--tech-silver);
+}
+.achievement-card:hover {
+  transform: translateY(-6px); box-shadow: var(--shadow-lg);
+  border-color: var(--warm-orange);
+}
+.achievement-img-wrap {
+  width: 100%; height: 200px; overflow: hidden; position: relative;
+  background: linear-gradient(135deg, var(--deep-blue), var(--deep-blue-light));
+}
+.achievement-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: var(--transition);
+}
+.achievement-card:hover .achievement-img-wrap img { transform: scale(1.08); }
+.achievement-badge {
+  position: absolute; top: 0.75rem; right: 0.75rem;
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background: var(--white);
+}
+.achievement-info { padding: 1.25rem; }
+.achievement-title { font-size: 0.95rem; font-weight: 700; color: var(--deep-blue); margin-bottom: 0.25rem; }
+.achievement-sub { font-size: 0.8rem; color: var(--text-light); }
+
+/* ===== Portfolio ===== */
+.portfolio { background: var(--white); }
+.portfolio-categories {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+}
+.portfolio-category {
+  background: var(--bg-light); border-radius: var(--radius-lg);
+  overflow: hidden; transition: var(--transition);
+  border: 1px solid var(--tech-silver);
+}
+.portfolio-category:hover {
+  box-shadow: var(--shadow-lg); transform: translateY(-4px);
+  border-color: var(--warm-orange);
+}
+.portfolio-cat-header {
+  padding: 2rem 1.5rem 1rem; text-align: center;
+  background: linear-gradient(135deg, var(--deep-blue), var(--deep-blue-light));
+  color: var(--white); position: relative; overflow: hidden;
+}
+.portfolio-cat-header::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
+  background: var(--warm-orange);
+}
+.portfolio-cat-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.portfolio-cat-title { font-size: 1.1rem; font-weight: 700; }
+.portfolio-cat-body { padding: 1.5rem; }
+.portfolio-cat-body .item {
+  padding: 0.875rem 0; border-bottom: 1px solid var(--tech-silver);
+  font-size: 0.9rem; color: var(--text-medium);
+}
+.portfolio-cat-body .item:last-child { border-bottom: none; }
+.portfolio-cat-body .item .item-title {
+  font-weight: 600; color: var(--deep-blue); display: block; margin-bottom: 0.15rem;
+}
+.portfolio-cat-body .item .item-desc { font-size: 0.82rem; color: var(--text-light); }
+.portfolio-cat-body .item a {
+  color: var(--warm-orange); font-size: 0.8rem; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 0.25rem;
+}
+.portfolio-cat-body .item a:hover { text-decoration: underline; }
+
+/* ===== Skills ===== */
+.skills { background: var(--bg-light); }
+.skills-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+}
+.skill-category {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 2rem; box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.skill-category:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.skill-cat-header {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-bottom: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 2px solid var(--tech-silver);
+}
+.skill-cat-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; background: var(--bg-light);
+}
+.skill-cat-title { font-size: 1.1rem; font-weight: 700; color: var(--deep-blue); }
+.skill-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.skill-chip {
+  padding: 0.5rem 1rem; border-radius: 50px;
+  background: var(--bg-light); border: 1px solid var(--tech-silver);
+  font-size: 0.85rem; color: var(--text-medium); font-weight: 500;
+  transition: var(--transition);
+}
+.skill-chip:hover {
+  background: var(--deep-blue); color: var(--white);
+  border-color: var(--deep-blue); transform: translateY(-2px);
+}
+
+/* ===== Gallery ===== */
+.gallery { background: var(--white); }
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.gallery-item {
+  position: relative; border-radius: var(--radius-md); overflow: hidden;
+  aspect-ratio: 1; cursor: pointer; box-shadow: var(--shadow-sm);
+}
+.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.gallery-item:nth-child(4) { grid-column: span 2; }
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: 0.6s ease;
+}
+.gallery-item:hover img { transform: scale(1.1); }
+.gallery-overlay {
+  position: absolute; inset: 0; background: rgba(26, 54, 93, 0.7);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: var(--transition);
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-overlay span {
+  color: var(--white); font-size: 0.95rem; font-weight: 600;
+  text-align: center; padding: 0 1rem;
+}
+
+/* ===== Contact ===== */
+.contact {
+  background: linear-gradient(135deg, var(--deep-blue-dark) 0%, var(--deep-blue) 50%, var(--deep-blue-light) 100%);
+  color: var(--white); position: relative; overflow: hidden;
+}
+.contact::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(226, 232, 240, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(226, 232, 240, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.contact .section-title { color: var(--white); }
+.contact .section-desc { color: var(--tech-silver); opacity: 0.8; }
+.contact-grid {
+  display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem;
+  align-items: center; position: relative; z-index: 1;
+}
+.contact-info-list { display: flex; flex-direction: column; gap: 1rem; }
+.contact-item {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.5rem; border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(226, 232, 240, 0.1);
+  transition: var(--transition);
+}
+.contact-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--warm-orange); transform: translateX(6px);
+}
+.contact-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; background: rgba(249, 115, 22, 0.15);
+  border: 1px solid rgba(249, 115, 22, 0.3); flex-shrink: 0;
+}
+.contact-item .label { font-size: 0.75rem; color: var(--tech-silver); opacity: 0.6; }
+.contact-item .value { font-size: 1rem; font-weight: 600; color: var(--white); }
+.contact-item a:hover .value { color: var(--warm-orange-light); }
+
+.contact-qr {
+  display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+}
+.qr-card {
+  background: var(--white); border-radius: var(--radius-md);
+  padding: 1rem; text-align: center; width: 160px;
+  transition: var(--transition);
+}
+.qr-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.qr-card img { width: 130px; height: 130px; object-fit: cover; border-radius: var(--radius-sm); margin: 0 auto 0.5rem; }
+.qr-card .qr-label { font-size: 0.85rem; color: var(--deep-blue); font-weight: 600; }
+
+/* ===== Footer ===== */
+.footer {
+  background: var(--deep-blue-dark); color: var(--tech-silver);
+  padding: 2.5rem 2rem 1.5rem; text-align: center;
+}
+.footer-slogan {
+  font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--warm-orange), var(--warm-orange-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.footer-slogan .emoji { -webkit-text-fill-color: initial; }
+.footer-copy { font-size: 0.8rem; opacity: 0.5; }
+
+/* ===== 滚动动画 ===== */
+.fade-in {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.fade-in.delay-1 { transition-delay: 0.1s; }
+.fade-in.delay-2 { transition-delay: 0.2s; }
+.fade-in.delay-3 { transition-delay: 0.3s; }
+.fade-in.delay-4 { transition-delay: 0.4s; }
+
+/* ===== 响应式 ===== */
+@media (max-width: 900px) {
+  .hero-content { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+  .hero-photo-wrap { order: -1; }
+  .hero h1 { font-size: 2rem; }
+  .hero-buttons { justify-content: center; }
+  .hero-stats { gap: 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; }
+  .timeline-line { left: 20px; }
+  .timeline-item { width: 100%; padding: 0 0 2rem 3rem; text-align: left; }
+  .timeline-item:nth-child(even) { left: 0; padding: 0 0 2rem 3rem; }
+  .timeline-dot { left: 11px !important; right: auto !important; }
+  .portfolio-categories { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+  .gallery-item:nth-child(4) { grid-column: span 2; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .nav-links.show {
+    display: flex; flex-direction: column; position: absolute;
+    top: 100%; left: 0; right: 0; background: var(--white);
+    padding: 1rem; box-shadow: var(--shadow-md); gap: 0;
+  }
+  .nav-links.show a { padding: 0.75rem 1rem; }
+  .nav-mobile-btn { display: block; }
+}
+@media (max-width: 500px) {
+  section { padding: 3rem 1rem; }
+  .section-title { font-size: 1.5rem; }
+  .hero { padding: 5rem 1rem 2rem; }
+  .hero h1 { font-size: 1.6rem; }
+  .hero-photo-frame { width: 220px; height: 280px; }
+  .hero-ring { width: 270px; height: 270px; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-item:nth-child(n) { grid-column: span 1; grid-row: span 1; }
+  .contact-qr { gap: 1rem; }
+  .qr-card { width: 140px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 导航栏 ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#hero" class="nav-logo">
+      <span class="logo-icon">🤖</span> 陈浮生 · 数字人生
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">关于我</a></li>
+      <li><a href="#timeline">职业历程</a></li>
+      <li><a href="#achievements">核心成就</a></li>
+      <li><a href="#portfolio">项目作品</a></li>
+      <li><a href="#skills">技能专长</a></li>
+      <li><a href="#gallery">精彩瞬间</a></li>
+      <li><a href="#contact">联系我</a></li>
+    </ul>
+    <button class="nav-mobile-btn" id="navBtn">☰</button>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="hero">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-code-deco" style="top: 15%; left: 5%;">
+const future = await build({
+  tech: 'AI + Robotics',
+  mission: 'Education',
+  community: 'Web3'
+});</div>
+  <div class="hero-code-deco" style="bottom: 20%; right: 5%; animation-delay: -10s;">
+while (true) {
+  learn();
+  build();
+  connect();
+  evolve();
+}</div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-tag">
+        <span class="dot"></span> 正在持续进化中
+      </div>
+      <h1>用<span class="highlight">技术</span>点亮教育<br>用<span class="highlight">社群</span>连接未来</h1>
+      <p class="hero-subtitle">AI机器人教育专家<span class="sep">|</span>创业团队负责人<span class="sep">|</span>Web3生态共建者</p>
+      <div class="hero-buttons">
+        <a href="#about" class="btn btn-primary">了解更多 →</a>
+        <a href="#contact" class="btn btn-outline">联系我</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="hero-ring"></div>
+      <div class="hero-photo-frame">
+        <img src="个人照片.jpg" alt="陈浮生个人照片">
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="num">10+</div>
+      <div class="label">技术领域</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">1万+</div>
+      <div class="label">平台用户</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">3000+</div>
+      <div class="label">社群成员</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">6+</div>
+      <div class="label">国际大奖</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-tag">About Me</span>
+      <h2 class="section-title">关于我</h2>
+      <p class="section-desc">跨界融合，持续进化</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card fade-in delay-1">
+        <ul class="identity-list">
+          <li><span class="icon">🎖️</span><span class="label">政治面貌</span>中共党员</li>
+          <li><span class="icon">🎓</span><span class="label">学历</span>本科</li>
+          <li><span class="icon">👑</span><span class="label">社会职务</span>集成创新协会会长</li>
+          <li><span class="icon">🤖</span><span class="label">领域</span>AI机器人教育</li>
+          <li><span class="icon">🌐</span><span class="label">副业</span>Web3生态共建</li>
+          <li><span class="icon">🚀</span><span class="label">身份</span>创业团队负责人</li>
+        </ul>
+      </div>
+      <div class="about-bio fade-in delay-2">
+        <p>从<strong style="color:var(--deep-blue)">机械工程师</strong>到<strong style="color:var(--deep-blue)">AI机器人教育</strong>，再到<strong style="color:var(--deep-blue)">创业团队负责人</strong>，始终走在技术与教育的交叉前沿。</p>
+        <p>相信<strong style="color:var(--warm-orange)">技术改变教育，社群创造价值</strong>。在每一个赛道，都用数据说话，用成果证明——从12万投资到17万盈利，从3000+真实用户社群到全球总冠军，每一步都踏实而坚定。</p>
+        <div class="about-tags">
+          <span class="about-tag">#VEX机器人</span>
+          <span class="about-tag">#STEAM教育</span>
+          <span class="about-tag">#Web3</span>
+          <span class="about-tag">#社群运营</span>
+          <span class="about-tag">#创业</span>
+          <span class="about-tag">#AI教育</span>
+          <span class="about-tag">#项目操盘</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Timeline ===== -->
+<section class="timeline" id="timeline">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-tag">Career Path</span>
+      <h2 class="section-title">职业历程</h2>
+      <p class="section-desc">每一步都在跨界，每一步都在进化</p>
+    </div>
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">2023.06 - 2024.10</span>
+          <div class="timeline-role">机械工程师</div>
+          <div class="timeline-company">瑞邦智能装备股份有限公司</div>
+          <ul class="timeline-desc">
+            <li>带领4人小组完成传统设备参数化流程，提升设计效率<strong style="color:var(--warm-orange)">30%</strong></li>
+            <li>独立对接牧原「猪肉胴体转向及切割」项目</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">2024.05</span>
+          <div class="timeline-role">Gensis项目 · 合伙人</div>
+          <div class="timeline-company">Web3数字资产</div>
+          <ul class="timeline-desc">
+            <li>负责市场推广，总投资<strong style="color:var(--warm-orange)">12万</strong>，盈利<strong style="color:var(--warm-orange)">17万+</strong></li>
+            <li>平台用户<strong style="color:var(--warm-orange)">1万+</strong>，真实社群参与交易<strong style="color:var(--warm-orange)">1400+人</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">2024.10 - 2026.06</span>
+          <div class="timeline-role">教研主管（从研发助理晋升）</div>
+          <div class="timeline-company">上海魔力小孩机器人科技有限公司</div>
+          <ul class="timeline-desc">
+            <li>一手主导公司AI机器人项目研发与教学</li>
+            <li>联合古月居、幻尔及海外团队（Google高级经理、硅谷机器人创业公司技术总监）</li>
+            <li>技术全球领先，国际公开赛全场最高分</li>
+            <li><strong style="color:var(--warm-orange)">2026年6月 VAIRC世锦赛全球总冠军 🏆</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-date">至今</span>
+          <div class="timeline-role">运营总监 & 中医团队FA</div>
+          <div class="timeline-company">木曦生物</div>
+          <ul class="timeline-desc">
+            <li>负责公司整体运营战略与执行</li>
+            <li>中医团队FA，对接资本与项目资源</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Achievements ===== -->
+<section class="achievements" id="achievements">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-tag">Achievements</span>
+      <h2 class="section-title">核心成就</h2>
+      <p class="section-desc">用奖杯和数据说话</p>
+    </div>
+    <div class="achievements-grid">
+      <div class="achievement-card fade-in">
+        <div class="achievement-img-wrap">
+          <img src="世锦赛晋级.jpg" alt="VAIRC世锦赛全球总冠军">
+          <div class="achievement-badge">🏆</div>
+        </div>
+        <div class="achievement-info">
+          <div class="achievement-title">VAIRC世锦赛全球总冠军</div>
+          <div class="achievement-sub">2026年6月 · 世界最高荣誉</div>
+        </div>
+      </div>
+
+      <div class="achievement-card fade-in delay-1">
+        <div class="achievement-img-wrap">
+          <img src="伯克利大学vex公开赛.jpg" alt="伯克利大学VEX公开赛">
+          <div class="achievement-badge">🏆</div>
+        </div>
+        <div class="achievement-info">
+          <div class="achievement-title">伯克利大学VEX公开赛</div>
+          <div class="achievement-sub">全场最高分</div>
+        </div>
+      </div>
+
+      <div class="achievement-card fade-in delay-2">
+        <div class="achievement-img-wrap">
+          <img src='2026"机器人+人工智能"创新创业挑战赛.jpg' alt="机器人+人工智能创新创业挑战赛">
+          <div class="achievement-badge">🏆</div>
+        </div>
+        <div class="achievement-info">
+          <div class="achievement-title">「机器人+人工智能」创新创业挑战赛</div>
+          <div class="achievement-sub">2026 · 创新创业</div>
+        </div>
+      </div>
+
+      <div class="achievement-card fade-in">
+        <div class="achievement-img-wrap">
+          <img src="VEX 获奖.jpg" alt="VEX获奖">
+          <div class="achievement-badge">🏆</div>
+        </div>
+        <div class="achievement-info">
+          <div class="achievement-title">VEX竞赛系列获奖</div>
+          <div class="achievement-sub">多项赛事优异成绩</div>
+        </div>
+      </div>
+
+      <div class="achievement-card fade-in delay-1">
+        <div class="achievement-img-wrap">
+          <img src="初中组问鼎vex iq总冠军庆贺.jpg" alt="初中组VEX IQ总冠军">
+          <div class="achievement-badge">🎯</div>
+        </div>
+        <div class="achievement-info">
+          <div class="achievement-title">带领初中组问鼎VEX IQ总冠军</div>
+          <div class="achievement-sub">竞赛指导成果</div>
+        </div>
+      </div>
+
+      <div class="achievement-card fade-in delay-2">
+        <div class="achievement-img-wrap">
+          <img src="中文核心.png" alt="中文核心期刊发表">
+          <div class="achievement-badge">📜</div>
+        </div>
+        <div class="achievement-info">
+          <div class="achievement-title">中文核心期刊发表</div>
+          <div class="achievement-sub">学术研究成果</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Portfolio ===== -->
+<section class="portfolio" id="portfolio">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-tag">Portfolio</span>
+      <h2 class="section-title">项目作品</h2>
+      <p class="section-desc">三大板块，跨界融合</p>
+    </div>
+    <div class="portfolio-categories">
+
+      <div class="portfolio-category fade-in delay-1">
+        <div class="portfolio-cat-header">
+          <div class="portfolio-cat-icon">🤖</div>
+          <div class="portfolio-cat-title">AI机器人教育</div>
+        </div>
+        <div class="portfolio-cat-body">
+          <div class="item">
+            <span class="item-title">VEX AI机器人课程体系研发</span>
+            <span class="item-desc">从0到1搭建完整课程体系</span>
+          </div>
+          <div class="item">
+            <span class="item-title">国内VEX AI杭州首发</span>
+            <span class="item-desc">引领国内VEX AI教育落地</span>
+          </div>
+          <div class="item">
+            <span class="item-title">STEAM教育生态共建</span>
+            <span class="item-desc">联合行业头部资源共建生态</span>
+          </div>
+          <div class="item">
+            <a href="https://canva.link/vjaqpjrg61wzelr" target="_blank">🔗 查看作品集 →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-category fade-in delay-2">
+        <div class="portfolio-cat-header">
+          <div class="portfolio-cat-icon">🌐</div>
+          <div class="portfolio-cat-title">Web3 & 数字资产</div>
+        </div>
+        <div class="portfolio-cat-body">
+          <div class="item">
+            <span class="item-title">Gensis</span>
+            <span class="item-desc">项目立项、背书、宣发、操盘，投资12万盈利17万+</span>
+          </div>
+          <div class="item">
+            <span class="item-title">45艺术</span>
+            <span class="item-desc">社群总运营及推广</span>
+          </div>
+          <div class="item">
+            <span class="item-title">热狗3.0龙虎区</span>
+            <span class="item-desc">社群运营及推广</span>
+          </div>
+          <div class="item">
+            <span class="item-title">国文汇通</span>
+            <span class="item-desc">最早期推广方及深度参与方</span>
+          </div>
+          <div class="item">
+            <span class="item-title">Jucoin</span>
+            <span class="item-desc">首批节点推广方</span>
+          </div>
+          <div class="item">
+            <span class="item-title">UnicornX</span>
+            <span class="item-desc">最大真实用户转化社区（3000+人），推广TaggerAI、zkWASM、FAIR3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-category fade-in delay-3">
+        <div class="portfolio-cat-header">
+          <div class="portfolio-cat-icon">👥</div>
+          <div class="portfolio-cat-title">社群与媒体</div>
+        </div>
+        <div class="portfolio-cat-body">
+          <div class="item">
+            <span class="item-title">公众号「创space」</span>
+            <span class="item-desc">聚焦STEAM教育及AI机器人教育生态共建</span>
+          </div>
+          <div class="item">
+            <span class="item-title">公众号「web3布Dao师」</span>
+            <span class="item-desc">专注项目推广，市场分析，生态合作共建</span>
+          </div>
+          <div class="item">
+            <span class="item-title">KOL总宣发</span>
+            <span class="item-desc">全域KOL矩阵宣发</span>
+          </div>
+          <div class="item">
+            <span class="item-title">一刻社群</span>
+            <span class="item-desc">联合主理人</span>
+          </div>
+          <div class="item">
+            <span class="item-title">必无忧社群</span>
+            <span class="item-desc">主理人</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== Skills ===== -->
+<section class="skills" id="skills">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-tag">Skills</span>
+      <h2 class="section-title">技能专长</h2>
+      <p class="section-desc">技术 × 运营 × 教育，三位一体</p>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skill-category fade-in delay-1">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon" style="background:rgba(26,54,93,0.1)">⚙️</div>
+          <div class="skill-cat-title">技术能力</div>
+        </div>
+        <div class="skill-list">
+          <span class="skill-chip">机械设计</span>
+          <span class="skill-chip">参数化设计</span>
+          <span class="skill-chip">AI机器人</span>
+          <span class="skill-chip">Python编程</span>
+          <span class="skill-chip">VEX系统</span>
+          <span class="skill-chip">课程研发</span>
+        </div>
+      </div>
+
+      <div class="skill-category fade-in delay-2">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon" style="background:rgba(249,115,22,0.1)">📈</div>
+          <div class="skill-cat-title">运营能力</div>
+        </div>
+        <div class="skill-list">
+          <span class="skill-chip">社群运营</span>
+          <span class="skill-chip">市场推广</span>
+          <span class="skill-chip">项目操盘</span>
+          <span class="skill-chip">生态共建</span>
+          <span class="skill-chip">KOL宣发</span>
+          <span class="skill-chip">品牌策划</span>
+        </div>
+      </div>
+
+      <div class="skill-category fade-in delay-3">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon" style="background:rgba(226,232,240,0.8)">🎓</div>
+          <div class="skill-cat-title">教育能力</div>
+        </div>
+        <div class="skill-list">
+          <span class="skill-chip">课程研发</span>
+          <span class="skill-chip">竞赛指导</span>
+          <span class="skill-chip">师资培训</span>
+          <span class="skill-chip">STEAM教育</span>
+          <span class="skill-chip">教研管理</span>
+          <span class="skill-chip">校企合作</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== Gallery ===== -->
+<section class="gallery" id="gallery">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-tag">Gallery</span>
+      <h2 class="section-title">精彩瞬间</h2>
+      <p class="section-desc">每一个画面，都是一段故事</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item fade-in">
+        <img src="上海工博会.jpg" alt="上海工博会">
+        <div class="gallery-overlay"><span>上海工博会</span></div>
+      </div>
+      <div class="gallery-item fade-in delay-1">
+        <img src="香港黑客松.jpg" alt="香港黑客松">
+        <div class="gallery-overlay"><span>香港黑客松</span></div>
+      </div>
+      <div class="gallery-item fade-in delay-2">
+        <img src="陆家嘴AI企业出海计划.jpg" alt="陆家嘴AI企业出海计划">
+        <div class="gallery-overlay"><span>陆家嘴AI企业出海计划</span></div>
+      </div>
+      <div class="gallery-item fade-in delay-1">
+        <img src="校企合作.jpg" alt="校企合作">
+        <div class="gallery-overlay"><span>校企合作</span></div>
+      </div>
+      <div class="gallery-item fade-in delay-2">
+        <img src="海南推广.jpg" alt="海南推广">
+        <div class="gallery-overlay"><span>海南推广</span></div>
+      </div>
+      <div class="gallery-item fade-in delay-3">
+        <img src="集成创新协会.jpg" alt="集成创新协会">
+        <div class="gallery-overlay"><span>集成创新协会</span></div>
+      </div>
+      <div class="gallery-item fade-in delay-1">
+        <img src="Magikid教研部主管.jpg" alt="Magikid教研团队">
+        <div class="gallery-overlay"><span>Magikid教研团队</span></div>
+      </div>
+      <div class="gallery-item fade-in delay-2">
+        <img src="国内vex ai杭州首发.jpg" alt="VEX AI杭州首发">
+        <div class="gallery-overlay"><span>VEX AI杭州首发</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-tag" style="background:rgba(249,115,22,0.2)">Contact</span>
+      <h2 class="section-title">联系我</h2>
+      <p class="section-desc">保持好奇，持续进化 — 期待与你连接</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info-list fade-in delay-1">
+        <a href="tel:19883310223" class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="label">电话</div>
+            <div class="value">19883310223</div>
+          </div>
+        </a>
+        <a href="mailto:gilmoredrusilla33@gmail.com" class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="label">邮箱</div>
+            <div class="value">gilmoredrusilla33@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://1614756108.github.io/chuangspace/" target="_blank" class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <div class="label">作品集</div>
+            <div class="value">1614756108.github.io/chuangspace/</div>
+          </div>
+        </a>
+        <a href="https://canva.link/vjaqpjrg61wzelr" target="_blank" class="contact-item">
+          <div class="contact-icon">🎨</div>
+          <div>
+            <div class="label">Canva作品</div>
+            <div class="value">AI机器人教育课程体系</div>
+          </div>
+        </a>
+      </div>
+      <div class="contact-qr fade-in delay-2">
+        <div class="qr-card">
+          <img src="个人微信.jpg" alt="个人微信二维码">
+          <div class="qr-label">个人微信</div>
+        </div>
+        <div class="qr-card">
+          <img src="社区群二维码.png" alt="社区群二维码">
+          <div class="qr-label">加入社群</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="footer-slogan"><span class="emoji">🚀</span> 保持好奇，持续进化</div>
+  <div class="footer-copy">© 2026 陈浮生 · 数字人生 | 用技术点亮教育，用社群连接未来</div>
+</footer>
+
+<script>
+// ===== 导航栏滚动效果 =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 30) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+});
+
+// ===== 移动端菜单 =====
+const navBtn = document.getElementById('navBtn');
+const navLinks = document.getElementById('navLinks');
+navBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('show')));
+
+// ===== 滚动淡入动画 =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ===== 浮动粒子生成 =====
+const hero = document.querySelector('.hero');
+const particleCount = 15;
+for (let i = 0; i < particleCount; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  const size = Math.random() * 4 + 2;
+  p.style.width = size + 'px';
+  p.style.height = size + 'px';
+  p.style.left = Math.random() * 100 + '%';
+  p.style.animationDuration = (Math.random() * 10 + 10) + 's';
+  p.style.animationDelay = -Math.random() * 15 + 's';
+  p.style.opacity = Math.random() * 0.5 + 0.2;
+  hero.appendChild(p);
+}
+
+// ===== 数字滚动动画 =====
+const statNums = document.querySelectorAll('.hero-stat .num');
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const text = el.textContent;
+      const match = text.match(/(\d+)(.*)/);
+      if (match) {
+        const target = parseInt(match[1]);
+        const suffix = match[2];
+        let current = 0;
+        const step = Math.ceil(target / 30);
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = current + suffix;
+        }, 30);
+      }
+      statObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+statNums.forEach(el => statObserver.observe(el));
+
+// ===== 时间线流动动画 =====
+const timelineLine = document.querySelector('.timeline-line');
+window.addEventListener('scroll', () => {
+  if (!timelineLine) return;
+  const rect = timelineLine.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+  const progress = Math.max(0, Math.min(1, (windowHeight - rect.top) / (windowHeight + rect.height)));
+  timelineLine.style.background = `linear-gradient(to bottom, var(--warm-orange) ${progress * 100}%, var(--deep-blue) ${progress * 100}%)`;
+});
+</script>
+</body>
+</html>
